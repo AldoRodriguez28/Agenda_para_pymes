@@ -1,0 +1,95 @@
+ul.dropdown-menu.containerMenu.show{
+    background-color: #fff;
+}
+.containerMenu{
+    inset: 16px auto auto -200px!important;
+}
+.matModalInput{
+    width: 80%;
+    margin-left: 10%;
+}
+.buttonAgenda{
+    width: 140px;
+}
+.footerContainer{
+    justify-content: center;
+    gap: 16px;
+    border: 0;
+}
+.fab-create-cita {
+    width: 70px;
+    height: 70px;
+    background-color: rgb(42,31,99);
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 #666;
+    transition: all 0.1s ease-in-out;
+    z-index: 100;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    position: fixed;
+    left: 20px;
+    bottom: 30px;
+}
+.cardRecurso{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 24% 52% 24%;
+}
+.iconContainer{
+    place-self: center;
+}
+.iconType{
+    font-size: 24px;
+    color: #707070;
+}
+.containerCardCallBack{
+    width: fit-content;
+    background-color:rgba(238, 29, 36, 0.19);
+    border-radius: 16px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    p{margin: 0;}
+}
+.containerCardAgendarCita{
+    width: fit-content;
+    background-color:rgba(57, 181, 75, 0.19);
+    border-radius: 16px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    p{margin: 0;}
+}
+.cardRecurso{
+    gap: 12px;
+    width: 100%;
+    max-width: 250px;
+}
+.nombreRecurso{
+    font-size: 20px;
+    font-weight: 600;
+    color:#707070;
+}
+.tipoRecurso{
+    font-size: 16px;
+    font-weight: 200;
+    color:#707070;
+}
+.actions{
+    display: flex;
+    gap: 16%;
+    color: #707070;
+}
+.iconAction{
+    font-size: 24.5px;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 453px) {
+    .containerMenu{
+        inset: 16px auto auto -122px!important;
+    }
+}
+@media only screen and (max-width: 452px) and (min-width: 365px) {
+    .containerMenu{
+        inset: 16px auto auto 100px!important;
+    }
+}

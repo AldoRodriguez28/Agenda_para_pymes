@@ -1,0 +1,128 @@
+h2 .name-month{
+  color: #707070;
+  font-family: Montserrat-SemiBold;
+  text-transform: capitalize;
+}
+
+app-recursos-view-calendar{
+  display: flex;
+  flex-wrap: wrap;
+}
+#administrarCita{
+    mwl-calendar-month-cell{
+      border: 0;
+      font-family: "Montserrat-SemiBold";
+    }
+    .cal-month-view .cal-header .cal-cell{
+      color: #707070;
+      font-family: Montserrat-SemiBold;
+      text-transform: capitalize;
+      text-overflow: ellipsis;
+    }
+    .cal-month-view .cal-days{
+      border: 0;
+    }
+    .cal-cell-row{
+      border: 0;
+    }
+    .cal-day-number{
+      font-size: 24px;
+      float: none;
+      margin: 0;
+
+    }
+    .cal-month-view{
+      .cal-cell-top{
+        display: flex;
+        place-self: center;
+        align-items: center;
+      }
+      .cal-day-cell.cal-weekend .cal-day-number{
+        color: #707070;
+      }
+      .cal-day-badge{
+        display: none;
+      }
+      .cal-events{
+        display: none;
+      }
+      .cal-today{
+        background-color: #fff;
+        .cal-day-number{
+          background-color: #292263;
+          color: #fff!important;
+          border-radius: 50%;
+          padding: 16px;
+          border: none!important;
+        }
+      }
+      .cal-has-events{
+        .cal-day-number:not(.cal-today){
+          color: #292263;
+          border: 4px solid rgb(219, 189, 36)!important;
+          border-radius: 50%;
+          padding: 16px;
+        }
+      }
+
+    } 
+    .dayClicked{
+      background-color:#cc0066;
+      color: #fff!important;
+      border-radius: 50%;
+      padding: 16px;
+    }
+    @media only screen and (max-width: 980px) {
+      app-recursos-view-calendar{
+        flex-wrap: wrap;
+      }
+    }
+
+}
+
+@media only screen and (max-width: 980px) {
+  .containerMes{
+    display: flex!important;
+    flex-direction: column!important;
+  }
+}
+
+// semana
+
+
+.cal-week-view .cal-ends-within-day .cal-event{
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.cal-header{
+
+  b{
+    font-family: Montserrat-Medium;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: rgb(105,105,105)!important;
+
+  }
+  span{
+    font-family: Montserrat-Medium;
+    font-size: 20px;
+    text-transform: capitalize;
+    //color: rgb(105,105,105);
+  }
+
+}
+
+.cal-week-view .cal-time {
+  font-family: Montserrat-Medium;
+  font-size: 14px;
+  color: rgb(105,105,105)!important;
+}
+
+.cal-week-view .cal-event{
+  font-family: Montserrat-Medium;
+  font-size: 14px;
+  color: rgb(105,105,105)!important;
+  border-color:rgb(250, 227, 227)!important;
+}

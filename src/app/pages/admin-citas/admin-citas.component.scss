@@ -1,0 +1,31 @@
+.toDay{
+    align-self: center;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Montserrat-Regular';
+    font-size: 48px;
+    color: #707070;
+    margin-top: 25px;
+}
+
+
+.fab-create-cita {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(42, 31, 99);
+    border-radius: 15%;
+    box-shadow: 0 6px 10px 0 #666;
+    transition: all 0.1s ease-in-out;
+    z-index: 100;
+    color: white;
+    text-align: center;
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    padding-top: 10px;
+    font-size: 30px;
+}
+.footerModalContainer{
+    
+}

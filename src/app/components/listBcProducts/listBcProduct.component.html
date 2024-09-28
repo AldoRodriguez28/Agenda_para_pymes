@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="container_sitios_2">
+      <p>Productos :</p>
+      <div class="col-9 productContainer">
+        <div class="row" *ngIf="listaBcProduct.length == 0">
+          <p class="container_sitios noproducts col-5">
+            No existen productos para este cliente.
+          </p>
+        </div>
+        <div
+          class="row"
+          id="div_listaBcProduct_{{ item.bc_product_id }}"
+          *ngFor="let item of listaBcProduct; let index = index"
+          class="container_sitios"
+        >
+          <a
+            [id]="item.bc_product_id"
+            class="buttonPildora"
+            (click)="getListContactForBcProduct(item.bc_product_id)"
+            >{{ item.domain }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<input id="bc_product_id" type="hidden" />

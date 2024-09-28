@@ -1,0 +1,82 @@
+<div class="container-fluid pt-4 admin-citas">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-6 pt-3 pb-3">
+                <app-ListadoBcProduct
+                    (bcProductId)="getbcProductId([$event])"
+                    (listadoContacto)="renderResource([$event])"
+                    [advertiser]="advertiser"
+                    id="ListadoBcProduct">
+                </app-ListadoBcProduct>
+            </div>
+            <div class="col-md-6 pb-3">
+                <app-recursos-view-calendar
+                        [recursos]="recurso"                        
+                ></app-recursos-view-calendar>
+            </div>
+
+
+            <div *ngIf="this.visibleCitas"  class="col-md-5">
+                <div class=" toDay">
+                    {{ DiaOMesSeleccionadoText  }}
+                </div>
+
+                <div *ngIf="loadingCitas; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    <br/> <br/>
+                    <app-loading-spinner></app-loading-spinner>
+                    <h5 class="text-center text-success">Cargando Citas...</h5>
+                    <br/>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <app-cita-calendar
+                            [listCitas]="listaCitas"
+                            [recursos]="recurso"
+                            [siteName]="siteName"
+                            (scheduleUpdated)="reloadSchedules()"
+                    ></app-cita-calendar>
+                </ng-template>
+            </div>
+
+            <div [class.col-md-7]= "visibleCitas == true " [class.col-md-12]= "visibleCitas == false ">
+                <app-calendar
+                        [citas]="listaCalendar"
+                        (daySelected)="getDaySelected($event)"
+                        (onLoadDates)="onLoadDatesCalendar($event.initialDate, $event.finalDate)"
+                        (selectedDate)="selectedDate($event)"
+                        (typeView)="selectTypeView($event)"
+                        [recursos]="recurso"
+                        [siteName]="siteName"
+                        [bcProduct] = "bcProductIdSelected"                        (actualizeAppointment) ="reloadSchedules()"
+                >
+                </app-calendar>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="foot"></div>
+</div>
+
+<!--modal crear citas-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agendar Cita</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <app-create-cita [recursos]="recurso" [bcProduct] = "bcProductIdSelected" [siteName]="siteName" (scheduleCreate)="reloadSchedules()"  (closeModal)="closeModalCitas($event)"></app-create-cita>
+</ng-template>
+
+<div class="fab-create-cita">
+    <a class="text-white" (click)="openLg(content)">
+        <fa-icon [icon]="faAd" class="iconType"></fa-icon>
+    </a>
+</div>

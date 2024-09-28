@@ -1,0 +1,1 @@
+export interface OnLoadDatesModel{initialDate: string, finalDate: string}

@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="headerContainer">
+    <div class="nameView">
+      <fa-icon [icon]="faGears" class="iconAction"></fa-icon>
+      <p class="nameView">Configuración</p>
+    </div>
+  </div>
+  <app-ListadoBcProduct
+    (listadoContacto)="renderContacts([$event])"
+    id="ListadoBcProduct"
+    [advertiser]="advertiser"
+    (click)="obtenerHorarios($event)"
+  ></app-ListadoBcProduct>
+  <section class="container">
+    <div class="left">
+      <p class="title">Horario de atencion :</p>
+      <div class="row copyNoContact" *ngIf="OpeningCalendar.openingDays.length == 0">
+        <p>No hay Horarios de atencion</p>
+      </div>
+      <div
+        *ngFor="let item of OpeningCalendar.openingDays; let index = index"
+        class="row containerDayConfig"
+      >
+        <div class="day">
+          <p>{{ item.dayName }}</p>
+          <mat-checkbox class="primary"
+          [ngModel]="item.closedDay"
+          (ngModelChange)="item.closedDay= $event" 
+          >Cerrado</mat-checkbox>
+        </div>
+        <div class="seccionContainer">
+          <div *ngFor="let seccion of OpeningCalendar.openingDays![index].hours; let j= index"
+          class="horarioContainerAC"
+        >
+          <mat-form-field appearance="fill">
+            <mat-label>Hora Apertura</mat-label>
+            <mat-select
+              [ngModel]="seccion.startTime"
+              (ngModelChange)="seccion.startTime = $event"                    
+             >
+              <mat-option *ngFor="let time of timeInit" [value]="time.value">
+                {{ time.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Hora Cierre</mat-label>
+            <mat-select
+              [ngModel]="seccion.endTime"  
+              (ngModelChange)="seccion.endTime = $event"   
+            >
+              <mat-option *ngFor="let time of timeEnd" [value]="time.value">
+                {{ time.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <fa-icon
+          *ngIf="j == 0"
+          [icon]="faPlus"
+          class="iconAction"
+          (click)="addSeccion(item.dayName)"
+          
+        ></fa-icon>
+        <fa-icon
+          *ngIf="j > 0"
+          [icon]="faTrashAlt"
+          class="iconAction"
+          (click)="eliminarSeccion(item.dayName,j)"
+          
+        ></fa-icon>
+        </div>
+        <div></div>
+     
+      </div>
+        </div>
+        
+      <div class="row">
+        <a class="btn-add" (click)="Guardar()">Guardar</a>
+      </div>
+    </div>
+    <div class="rigth">
+      <p class="title">Recursos :</p>
+      <app-RecursosCard [recursos]="recursos"></app-RecursosCard>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,48 @@
+
+<div class="containerMain" *ngFor="let item of newRecurso; let index = index">
+    <div  class="cardRecurso" [ngClass]="testTypeResource(item)">
+    <div class="infoRecurso">
+        <div *ngIf="item.typeId == 1" class="iconContainer">
+            <fa-icon  [icon]="faCalendarAlt" class="iconType" ></fa-icon>
+        </div>
+        <div *ngIf="item.typeId == 2" class="iconContainer">
+            <fa-icon  [icon]="faPhoneAlt" class="iconType" ></fa-icon>
+        </div>
+        <div class="detail">
+            <p class="nombreRecurso">{{item.nombre}}</p>
+           </div>
+        <div class="actions">
+            <fa-icon [icon]="facog" class="iconAction" (click)="open(content,item)" ></fa-icon>
+            <fa-icon [icon]="faTrashAlt" class="iconAction" (click)="DeleteCalendar(item)" ></fa-icon>
+        </div>
+    </div>
+    <div class="infoHorario">
+        <div class="horarioRecurso">
+            <p class="header">Horario de atencion</p>
+            <div class=" row horario_x_dia">
+                <tr>
+                    <div *ngFor="let x of item.horarios">
+                        <div [ngClass]="x.closedDay === true ? 'dayClose' : ''" class="col-6">{{x.dia}}</div>
+                        <div [ngClass]="x.closedDay === true ? 'dayClose' : ''" class="col-6"> &nbsp;{{x.horarioApertura.split(':')[0]}}:{{x.horarioApertura.split(':')[1]}} - {{x.horarioCierre.split(':')[0]}}:{{x.horarioCierre.split(':')[1]}}</div>
+                    </div>
+                </tr>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!--modal agendar recursos-->
+<ng-template #content let-modal  >
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Configurar Recurso</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
+      ></button>
+    </div>
+    <app-agendar-recurso  [bcProductId]="BcProductId" [calendar]="Calendar" [calendarId]="CalendarId"  [siteName]="newSiteName"
+      (closeModal)="closeModalCitas($event)"
+    ></app-agendar-recurso>
+  </ng-template>

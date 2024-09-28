@@ -1,0 +1,96 @@
+
+#calendar{
+
+  padding-top: 15px;
+
+  h3 {
+    margin: 0 0 10px;
+  }
+
+  pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+  }
+
+  //header calendar
+
+  #items-calendar{
+    display: flex;
+    align-content: center;
+    align-items: center;
+  }
+
+  .name-month{
+    font-family: Montserrat-Light;
+    align-self: center;
+    text-align: center;
+    text-transform: capitalize;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #pre-calendar{
+    font-size: 32px;
+    color: #707070;
+
+  }
+  #next-calendar{
+    font-size: 32px;
+    color: #707070;
+  }
+  .btn-group-calendar{
+    $borders: 28px;
+
+    .btn-mes{
+      border-top-right-radius: $borders;
+      border-bottom-right-radius: $borders;
+
+    }
+    .btn-dia{
+      border-top-left-radius: $borders;
+      border-bottom-left-radius: $borders;
+
+    }
+    .btn{
+      font-family: Montserrat-Medium;
+      border-color:  rgb(214,214,214);
+      background-color: transparent;
+      color: rgb(112,112,112);
+    }
+
+   .btn.active{
+     background-color: rgb(42,31,99);
+     border-color:  rgb(42,31,99);
+     color: white;
+    }
+
+  }
+}
+.mes{
+  background-color: red;
+}
+#administrarCita{
+  .cal-month-view .cal-day-cell.cal-weekend .cal-day-number{
+    background-color: yellow !important;
+    columns: blue !important;
+  }
+}
+mwl-calendar-month-view{
+  .cal-month-view{
+    .cal-days{
+      .ng-star-inserted{
+        .cal-cell-row{
+          mwl-calendar-month-cell{
+            border: 0;
+            background-color: red;
+          }
+        }
+      }
+    }
+  }
+}
+.dayClicked{
+  color: red!important;
+}
+
+
+

@@ -1,0 +1,215 @@
+<div class="col-12 containerHeader">
+  <div class="col-4 header">
+    <h5>Estatus</h5>
+  </div>
+  <div class="col-4 header">
+    <h5>Hora</h5>
+  </div>
+  <div class="col-4 header">
+    <h5>Recurso</h5>
+  </div>
+</div>
+<div class="row citas-scroll">
+  <div class="" *ngFor="let item of arrayCitas">
+    <div
+      class="cardCita"
+      [ngClass]="testTypeCita(item)"
+      id="{{ item.appointmentId }}"
+    >
+      <div class="col-md-4 status">
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Aceptado && item.calendarTypeId == 1"
+          class="iconContainer aceptada"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/Aceptado-01 (1).svg"
+            alt="aceptado"
+          />
+          <span class="status-name"> &nbsp;{{ item.statusCode }} </span>
+        </div>
+
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Aceptado && item.calendarTypeId == 2"
+          class="iconContainer aceptada"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/AceptadoLlamada.svg"
+            alt="aceptado"
+          />
+          <span class="status-name"> &nbsp;{{ item.statusCode }} </span>
+        </div>
+
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Pendiente && item.calendarTypeId == 1"
+          class="iconContainer pendiente"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/SinStatus-03 (1) (1).svg"
+            alt="aceptado"
+          />
+              <span class="status-name"> &nbsp;Por confirmar </span>
+        </div>
+
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Pendiente && item.calendarTypeId == 2"
+          class="iconContainer pendiente"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/SinStatusLlamada.svg"
+            alt="aceptado"
+          />
+              <span class="status-name"> &nbsp;Por confirmar </span>
+        </div>
+
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Rechazado && item.calendarTypeId == 1"
+          class="iconContainer rechazado"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/Rechazado-1-02 (1).svg"
+            alt="aceptado"
+          />
+          <span class="status-name"> &nbsp;{{ item.statusCode }} </span>
+        </div>
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Rechazado && item.calendarTypeId == 2"
+          class="iconContainer rechazado"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/CancelarLLamada.svg"
+            alt="aceptado"
+          />
+          <span class="status-name"> &nbsp;{{ item.statusCode }} </span>
+        </div>
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Expirado && item.calendarTypeId == 1"
+          class="iconContainer expirado"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/Vencido-04-04 (2).svg"
+            alt="aceptado"
+          />
+          <span class="status-name"> &nbsp;{{ item.statusCode }} </span>
+        </div>
+
+        <div
+          *ngIf="item.statusCodeId == statusApoiment.Expirado && item.calendarTypeId == 2"
+          class="iconContainer expirado"
+          (click)="openLg(modalContent, item.appointmentId)"
+        >
+          <img
+            class="imgIcon"
+            src="../../../assets/ico/EXpirarLlamada.svg"
+            alt="aceptado"
+          />
+          <span class="status-name"> &nbsp;{{ item.statusCode }} </span>
+        </div>
+      </div>
+
+      <div class="col-md-4 hora">
+        {{ item.initialDate | date : "shortDate" : "" : "es" }}
+        {{ item.initialDate | date : "shortTime" : "" : "es" }} -
+        {{ item.finalDate | date : "shortTime" : "" : "es" }}
+      </div>
+      <div class="col-md-4 servicio">
+        {{ item.resource }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalContent let-close="close">
+  <app-detail-cita
+    [recursos]="arrayRecursos"
+    [siteName]="siteNameCitaCalendar"
+    [idAppointment]="idAppointment"
+    [flagExpired]="statusExpired"
+    (close)="close()"
+    (UpdateAppointment)="AppointmentUpdate()"
+  ></app-detail-cita>
+</ng-template>
+<!--modal status citas-->
+<ng-template #contentStatusCita let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="row text-center">
+    <div class="col-md-12">
+      <img
+        src="assets/ico/exclamation.png"
+        class="exclamation img-fluid d-block mx-auto"
+      />
+
+      <h3>Confirmar Cita</h3>
+    </div>
+    <div class="col-md-12">
+      <b>Agenda: </b><span>{{ citaSelected.resource }}</span>
+    </div>
+    <div class="col-md-12">
+      <b>Horario: </b>
+      <span>
+        {{ citaSelected.initialDate | date : "shortTime" }}
+        -
+        {{ citaSelected.finalDate | date : "shortTime" }}
+      </span>
+    </div>
+    <div class="col-md-12">
+      <b>Servicio: </b><span>{{ citaSelected.observations }} </span>
+    </div>
+    <div class="col-md-12">
+      <b>Tipo: </b><span>{{ citaSelected.calendarType }} </span>
+    </div>
+    <div class="buttons-modal row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <button *ngIf="rechazandoEstatus" class="btn btn-secondary w-100">
+          Rechazando
+        </button>
+        <button
+          *ngIf="!rechazandoEstatus && statusExpired == false"
+          (click)="
+            updateCita(citaSelected.appointmentId, statusApoiment.Rechazado)
+          "
+          class="btn btn-danger w-100"
+        >
+          Rechazar..
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button *ngIf="aceptandoEstatus" class="btn btn-secondary w-100">
+          Aceptando
+        </button>
+        <button
+          *ngIf="!aceptandoEstatus && statusExpired == false"
+          (click)="
+            updateCita(citaSelected.appointmentId, statusApoiment.Aceptado)
+          "
+          class="btn btn-primary w-100"
+        >
+          Aceptar
+        </button>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</ng-template>

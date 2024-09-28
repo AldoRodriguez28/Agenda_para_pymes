@@ -1,0 +1,36 @@
+
+
+.filas{
+    color: #fff;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.tipoContainer{
+    display: flex;
+    gap: 8px;
+}
+.container .header{
+    background-color: #292263!important;
+    color: #ffff;
+    font-weight: 700;
+    .row{
+        justify-content: center;
+    }
+   
+}
+.td{
+    display: flex;
+}
+.header{
+    margin-bottom: 8px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+}
+.action{
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+.actionPointer{
+    cursor:pointer;
+}

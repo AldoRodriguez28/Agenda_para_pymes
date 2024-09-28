@@ -1,0 +1,52 @@
+.cardRecurso{
+    display: grid;
+    grid-template-columns: 24% 52% 24%;
+}
+.iconContainer{
+    place-self: center;
+}
+.iconType{
+    font-size: 44px;
+    color: #707070;
+}
+.containerCardCallBack{
+    background-color:rgba(238, 29, 36, 0.19);
+    border-radius: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+    p{margin: 0;}
+}
+.containerCardAgendarCita{
+    background-color:rgba(57, 181, 75, 0.19);
+    border-radius: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+    p{margin: 0;}
+}
+.cardRecurso{
+    gap: 12px;
+    margin: 12px;
+}
+.nombreRecurso{
+    font-size: 20px;
+    font-weight: 600;
+    color:#707070;
+}
+.tipoRecurso{
+    font-size: 16px;
+    font-weight: 200;
+    color:#707070;
+}
+.actions{
+    display: flex;
+    place-self: center;
+    gap: 16%;
+    color: #707070;
+}
+.iconAction{
+    font-size: 24.5px;
+}

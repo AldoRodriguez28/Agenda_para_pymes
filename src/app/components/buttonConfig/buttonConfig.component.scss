@@ -1,0 +1,51 @@
+.dialogContainer{
+    width: 732px;
+}
+.modal-header{
+    border-bottom: 0px;
+    h4{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    color: #707070;
+    }
+}
+.modalContainer_addContact{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+.hintInput{
+    color: #707070;
+}
+
+.containerData{
+    display: grid;
+    gap: 16px;
+}
+.matModalInput{
+    width: 80%;
+    margin-left: 10%;
+}
+.buttonAgenda{
+    width: 140px;
+}
+.footerContainer{
+    justify-content: center;
+    gap: 16px;
+    border: 0;
+}
+.fab-create-cita {
+    width: 70px;
+    height: 70px;
+    background-color: rgb(42,31,99);
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 #666;
+    transition: all 0.1s ease-in-out;
+    z-index: 100;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    position: fixed;
+    left: 20px;
+    bottom: 30px;
+}

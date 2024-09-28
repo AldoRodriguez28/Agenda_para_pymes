@@ -1,0 +1,61 @@
+<!-- componente que tenga todas las interraciones-->
+<div *ngIf="loadingInteracciones; else interacciones">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<ng-template #interacciones>
+  <div class="interaccionHeader">Interacciones Recientes:</div>
+  <div class="container table">
+    <div class="row header">
+      <div class="col-3">Tipo</div>
+      <div class="col-2">Estatus</div>
+      <div class="col-2">Fecha</div>
+      <div class="col-3">Comentario</div>
+      <div class="col-2">Información</div>
+    </div>
+    <!-- Componente interacciones  -->
+    <div *ngFor="let item of listInteracciones">
+      <div class="filas">
+        <div class="filasTr">
+          <div class="row">
+            <div class="col-3 tipoContainer">
+              <div
+                *ngIf="item?.type == 'Reserva en linea'"
+                class="iconContainer"
+              >
+                <fa-icon [icon]="faCalendarAlt" class="iconType"></fa-icon>
+              </div>
+              <div
+                *ngIf="item?.type == 'Retorno de llamada'"
+                class="iconContainer"
+              >
+                <fa-icon [icon]="faPhoneAlt" class="iconType"></fa-icon>
+              </div>
+              <div
+                *ngIf="item?.type == 'Contáctanos'"
+                class="iconContainer"
+              >
+                <fa-icon [icon]="faIdCard" class="iconType"></fa-icon>
+              </div>
+              <div>
+                {{ item?.type }}
+              </div>
+            </div>
+            <div class="col-2">{{ item.statusCode }}</div>
+            <div class="col-2">
+              {{ item.dateInteracction | date : "short" }}
+            </div>
+            <div class="col-3">{{ item.comments }}</div>
+            <div class="col-2 action">               
+              <fa-icon  (click)="detailInteration(item.interactionId)" [icon]="faInfoCircle" class="iconType actionPointer"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #modalContent let-close="close">
+  
+
+</ng-template>

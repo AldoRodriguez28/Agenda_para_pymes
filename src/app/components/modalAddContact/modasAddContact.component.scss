@@ -1,0 +1,51 @@
+
+.dialogContainer{
+    width: 732px;
+}
+.modal-header{
+    border-bottom: 0px;
+    h4{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    color: #707070;
+    }
+}
+.modalContainer_addContact{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+.hintInput{
+    color: #707070;
+}
+.btn-add {
+    background-color: #292263;
+    color: #ffff;
+    padding: 8px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 24px;
+    -webkit-box-shadow: 10px 10px 26px -4px rgba(0,0,0,0.69);
+    -moz-box-shadow: 10px 10px 26px -4px rgba(0,0,0,0.69);
+    box-shadow: 10px 10px 26px -4px rgba(0,0,0,0.69);
+}
+.btn-add:hover {
+    background-color: #514a8c;
+    color: #ffff;
+}
+.containerData{
+    display: grid;
+    gap: 16px;
+}
+.matModalInput{
+    width: 80%;
+    margin-left: 10%;
+}
+.buttonAgenda{
+    width: 140px;
+}
+.footerContainer{
+    justify-content: center;
+    gap: 16px;
+    border: 0;
+}

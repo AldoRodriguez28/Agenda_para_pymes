@@ -1,0 +1,25 @@
+<div
+  class="container containerMain"
+  *ngFor="let item of newRecurso; let index = index"
+>
+  <div class="cardRecurso" [ngClass]="testTypeResource(item)">
+    <div *ngIf="item.tipo !== 'Retorno de Llamada'" class="iconContainer">
+      <fa-icon [icon]="faCalendarAlt" class="iconType"></fa-icon>
+    </div>
+    <div *ngIf="item.tipo == 'Retorno de Llamada'" class="iconContainer">
+      <fa-icon [icon]="faPhoneAlt" class="iconType"></fa-icon>
+    </div>
+    <div class="detail">
+      <p class="nombreRecurso">{{ item.nombre }}</p>
+      <p class="tipoRecurso">{{ item.tipo }}</p>
+    </div>
+    <div class="actions">
+      <fa-icon
+        [icon]="facog"
+        class="iconAction"
+        [routerLink]="['/agendas',advertiser]"
+      ></fa-icon>
+   
+    </div>
+  </div>
+</div>

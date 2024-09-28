@@ -1,0 +1,122 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Detalles de la Cita</h4>
+
+    <button type="button" class="btn-close" aria-label="Close" (click)="CloseModal()"></button>
+
+</div>
+<div class="modal-body" id="create-cita">
+    <div class="col-md-12 pt-3" id="selectResursos">
+        <app-select-recursos [recursoSelected]="idRecursoSelecte" [recursos]="recursos" (EventCalendar)="CalendarEvent($event)"></app-select-recursos>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6 pt-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Elije una Fecha</mat-label>
+                <input [(ngModel)]="detailCita.fecha" matInput [matDatepicker]="picker" >
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle  matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+        <div class="col-md-6 pt-3" id="time-picker">
+            <mat-form-field appearance="fill" >
+                <mat-label >Horario</mat-label>
+                <mat-select  [(ngModel)]="detailCita.hora">
+                    <mat-option  *ngFor="let time of timeInit" [value]="time.startHour">
+                        {{time.startHour}} - {{time.endHour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 pt-3">
+            <mat-form-field class="matModalInput w-100" appearance="outline">
+                <mat-label>Escribe el nombre del cliente</mat-label>
+                <input 
+                        matInput
+                       name="contactName"
+                       class="form-control "
+                       [(ngModel)]="detailCita.nombre"/>
+                <mat-hint class="hintInput">Jhon Doe</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 pt-3">
+            <mat-form-field      class="matModalInput w-100" appearance="outline">
+                <mat-label >Telefono:</mat-label>
+                <input matInput                                     
+                       name="Phone"                      
+                       class="form-control"
+                       [pattern] ="regexPhone"
+                       maxlength="10"
+                       minlength="10" 
+                       required
+                       [(ngModel)]="detailCita.telefono"                   
+                       />
+                <mat-hint class="hintInput">555555555</mat-hint>                
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 pt-3" >
+            <mat-form-field class="matModalInput w-100" appearance="outline">
+                <mat-label>Correo:</mat-label>
+                <input matInput
+                       name="Email"
+                       class="form-control "
+                       [pattern] = "regexEmail"
+                       [(ngModel)]="detailCita.email"
+                       required
+                       />
+                <mat-hint class="hintInput">correo@ejemplo.com</mat-hint>
+            </mat-form-field>
+        </div>
+        
+
+        <div class="col-md-12 pt-3 " id="comentario">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Escribe un comentario:</mat-label>
+                <textarea  [(ngModel)]="detailCita.comentario" matInput placeholder="Comentario"></textarea>
+            </mat-form-field>
+        </div>
+
+
+    </div>
+
+
+</div>
+<div class="statusAppointment">
+    <p>
+        <ngb-alert *ngIf="detailCita.statusCode == 'P'" [type]="'warning'" [dismissible]="false">
+            <strong>!Pendiente!</strong> El estado actual de la cita es "Pendiente".
+        </ngb-alert>
+        <ngb-alert *ngIf="detailCita.statusCode == 'A'" [type]="'success'" [dismissible]="false">
+            <strong>!Aceptada!</strong> El estado actual de la cita es "Aceptada".
+        </ngb-alert>
+        <ngb-alert *ngIf="detailCita.statusCode == 'R'" [type]="'danger'" [dismissible]="false">
+            <strong>!Rechazada!</strong> El estado actual de la cita es "Rechazada".
+        </ngb-alert>
+    </p>
+    
+</div>
+<!-- <div *ngIf="detailCita.statusCode == 'A'" class="modal-footer footerModalContainer">
+    <button *ngIf="!statusExpirado" type="button"
+    class="btn btn-outline-dark buttonModal"
+    (click)="updateCita(this.idCita,statusApoiment.Rechazado);CloseModal()"
+    >Rechazar cita</button>
+    <button id="editButton" type="button" class="btn btn-outline-dark buttonModal"  (click)="putAppointment()" 
+    >Actualizar</button>
+</div> -->
+<div *ngIf="detailCita.statusCode == 'P'" class="modal-footer footerModalContainer">
+    <button  *ngIf="!statusExpirado" type="button"
+            class="btn btn-outline-dark buttonModal"
+            (click)="updateCita(this.idCita,statusApoiment.Rechazado);CloseModal()"
+    >Rechazar</button>
+    <button *ngIf="!statusExpirado" id="editButton" type="button" class="btn btn-outline-dark buttonModal"(click)="updateCita(this.idCita,statusApoiment.Aceptado)" 
+    >Aceptar</button>
+    <!-- <button id="updateButton" type="button" class="btn btn-outline-dark buttonModal"(click)="putAppointment()" 
+    >Actualizar</button> -->
+</div>
+<!-- <div *ngIf="detailCita.statusCode == 'R'" class="modal-footer footerModalContainer">
+    <button *ngIf="!statusExpirado" id="editButton" type="button" class="btn btn-outline-dark buttonModal"(click)="updateCita(this.idCita,statusApoiment.Aceptado)" 
+    >Aceptar</button>
+    <button id="updateButton" type="button" class="btn btn-outline-dark buttonModal"(click)="putAppointment()" 
+    >Actualizar</button>
+</div> -->

@@ -1,0 +1,21 @@
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1057!important;
+}
+#time-picker{
+  padding-left: 23px;
+}
+
+.mdc-text-field--filled{
+  background-color: rgb(22,118,255)!important;
+}
+h5{
+  font-family: Montserrat-Light;
+  font-size: 15px;
+}
+
+#horario{
+  max-height: 220px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "https://minegocio.d.seccionamarilla.com.mx/",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin":true
+    }
+}

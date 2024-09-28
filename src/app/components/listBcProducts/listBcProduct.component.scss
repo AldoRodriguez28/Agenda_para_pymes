@@ -1,0 +1,35 @@
+.buttonPildora{
+    width: auto;
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid gray;
+    color: #707070;
+    cursor: pointer;
+}
+.bcProoduct_click{
+    background-color: #292263;
+    color: #ffff;
+    font-weight: 700;
+}
+.container_sitios:first-child{
+    margin-top: 0;
+}
+.container_sitios{
+    display: flex;
+    width: auto!important;
+   margin-top: 10px;
+}
+div .row p{
+    display: flex;
+    width: auto;
+}
+.container_sitios_2{
+    display:flex;
+    flex-wrap: wrap;
+    gap:8px;
+}
+.noproducts{
+    color:#707070
+}

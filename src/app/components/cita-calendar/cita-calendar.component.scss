@@ -1,0 +1,109 @@
+.cita-calendar{
+    padding-top: 14px;
+}
+.header{
+    text-align: center;
+    align-self: center;
+    text-transform: capitalize;
+    font-family: Montserrat-Bold;
+    color: rgb(91,178,82	);
+
+}
+
+.cardCita{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.aceptada{
+    color: #707070;
+}
+.pendiente{
+    color: #707070;
+}
+.rechazado{
+    color: #707070;
+}
+.containerMain{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.iconContainer{
+    place-self: center;
+    display: flex;
+    /* align-content: center; */
+    justify-content: flex-start;
+}
+.containerCardCallBack{
+    background-color:rgba(238, 29, 36, 0.19);
+    border-radius: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+    @media (min-width: 970px) {
+        padding-left: 20px;
+      }
+    p{margin: 0;}
+}
+.containerCardAgendarCita{
+    background-color:rgba(57, 181, 75, 0.19);
+    border-radius: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+    @media (min-width: 970px) {
+        padding-left: 20px;
+      }
+    p{margin: 0;}
+}
+#swal2-html-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.citas-scroll{
+    $max: 500px;
+    max-height:$max!important;
+
+    overflow-y: auto;
+
+}
+
+.status{
+    cursor: pointer;
+}
+.exclamation{
+    max-height: 120px;
+}
+.buttons-modal{
+    font-family: Montserrat-SemiBold;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+.containerHeader{
+    display: flex;
+}
+.expirado{
+    color:#707070
+}
+.imgIcon{
+    width: 28px;
+    height: auto;
+    filter: drop-shadow(1px 1px 1px #707070);
+}
+.status-name{
+    font-size: 12px;
+    place-self: center;
+}
+.hora{
+    place-self: center;
+}
+.servicio{
+    place-self: center;
+}

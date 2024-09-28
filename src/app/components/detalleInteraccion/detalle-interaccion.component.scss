@@ -1,0 +1,137 @@
+.table{
+    .header{
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .row{word-wrap: break-word;}
+    .filas{
+        .copyNoContact{
+            font-size: 24px;
+            color: #707070;
+            text-align: center;
+            justify-self:center;
+            margin-top: 10%;
+        }
+        .filasTr{
+            border: 1px solid gray;
+            border-radius: 4px;
+            .actionContainer{
+                display: flex;
+                justify-content: space-around;
+                text-decoration: none;
+            }
+            .interaccionContact{
+                background-color: #292263!important;
+                .row{
+                    justify-content: center;
+                }
+               
+            }
+        }
+        .collapseTr{
+            padding-bottom: 0px;
+            padding-top: 0px;
+            cursor: pointer;
+            .row{
+                word-wrap: break-word;
+                align-items: center;
+                .detailIcon{
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    place-self: center;
+                    text-align: center;
+                    p{
+                        margin: 0;
+                        font-size: 12px;
+                    }
+                }
+                .detailIcon:hover{
+                    background-color: #68648f;
+                }
+                .deleteIcon{
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    place-self: center;
+                    text-align: center;
+                    p{
+                        margin: 0;
+                        font-size: 12px;
+                    }
+                }
+                .deleteIcon:hover{
+                    background-color: #68648f;
+
+                }
+                .iconAction{
+                    color: #292263;
+                    font-size: 28px;
+                }
+            }
+        }
+        .interaccionContact{
+            background-color: #292263!important;
+            color: #ffff;
+            .row{
+                justify-content: center;
+            }
+           
+        }
+    }
+    
+}
+.nodisplay{
+    display: none;
+}
+.interaccionContacto{
+    background-color: #292263;
+    color: #ffff;
+    .table{
+        .header{
+            color: #ffff;
+        }
+        .filas{
+            color: #ffff;
+        }
+    }
+}
+
+//Style Modal
+
+.dialogContainer{
+    width: 732px;
+}
+
+.modalContainer_addContact{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+.hintInput{
+    color: #707070;
+}
+.btn-add {
+    background-color: #292263;
+    color: #ffff;
+    padding: 8px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 24px;
+    -webkit-box-shadow: 10px 10px 26px -4px rgba(0,0,0,0.69);
+    -moz-box-shadow: 10px 10px 26px -4px rgba(0,0,0,0.69);
+    box-shadow: 10px 10px 26px -4px rgba(0,0,0,0.69);
+}
+.btn-add:hover {
+    background-color: #514a8c;
+    color: #ffff;
+}
+.containerData{
+    display: grid;
+    gap: 16px;
+}
+.matModalInput{
+    width: 80%;
+    margin-left: 10%;
+}
+

@@ -1,0 +1,29 @@
+<div class="container table containerRecursos" *ngFor="let item of newRecurso">
+  <div class="row cardRecurso" [ngClass]="testTypeResource(item)">
+    <div *ngIf="item.calendarType !== 'Retorno de Llamada'" class="col-2 iconContainer">
+      <fa-icon [icon]="faCalendarAlt" class="iconType"></fa-icon>
+    </div>
+    <div *ngIf="item.calendarType == 'Retorno de Llamada'" class="col-2 iconContainer">
+      <fa-icon [icon]="faPhoneAlt" class="iconType"></fa-icon>
+    </div>
+    <div class="col-12 recursoNombreContainer">
+      {{item.resource}}
+      
+<!--       
+      <ul class="dropdown-menu containerMenu">
+        <li>
+          <a [routerLink]="['/agendas',advertiser]" id="liOpenModal" class="dropdown-item"
+            >Configuración</a
+          >
+        </li>
+      </ul>
+    </div>
+    <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      ></a> -->
+  </div>
+</div>

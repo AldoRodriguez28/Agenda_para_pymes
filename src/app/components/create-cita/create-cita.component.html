@@ -1,0 +1,106 @@
+<div class="modal-body " id="create-cita">
+    <div class="row mb-3">
+        <div class="col-md-12 pt-3" id="selectResursos">
+            <app-select-recursos  [recursos]="recursos" (EventCalendar)="CalendarEvent($event)" (EventTypeCalendar)="TypeCalendarEvent($event)"></app-select-recursos>
+        </div>
+        <div class="col-md-12 pt-3" id="selectResursos" *ngIf ="!isSelect">
+            selecione un recurso para poder continuar...
+        </div>
+        <div class="col-lg-4 col-sm-12 col-md-6 pt-3" *ngIf="isSelect" >
+            <mat-form-field appearance="fill">
+                <mat-label>Elije una Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="minDate" [(ngModel)]="date" (ngModelChange)="GetAppointmentsAvailable()">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle  matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker  #picker></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+        <div class="col-lg-4 col-sm-12 col-md-6 pt-3" id="time-picker" *ngIf ="isSelect">
+            <mat-form-field appearance="fill" >
+                <mat-label >Horario</mat-label>
+                <mat-select [(ngModel)]="selectSchedule" required>
+                    <mat-option *ngFor="let time of timeInit" [value]="time.startHour">
+                        {{time.startHour}} - {{time.endHour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 pt-3" *ngIf="isSelect">
+            <mat-form-field class="matModalInput w-100" appearance="outline">
+                <mat-label >Escribe el nombre del cliente</mat-label>
+                <input matInput
+                       name="contactName"
+                       class="form-control "
+                       [(ngModel)]="fullName"
+                       pattern="^[a-zA-Z ]{2,254}$"
+                       />
+                <mat-hint class="hintInput">Diana Ramirez</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 pt-3" *ngIf="isSelect" >
+            <mat-form-field      class="matModalInput w-100" appearance="outline">
+                <mat-label >Telefono:</mat-label>
+                <input matInput                                     
+                       name="Phone"                      
+                       class="form-control"
+                       [pattern] ="regexPhone"
+                       [(ngModel)]="phone"  
+                       maxlength="10"
+                       minlength="10" 
+                       required                   
+                       />
+                <mat-hint class="hintInput">555555555</mat-hint>                
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 pt-3" *ngIf="isSelect">
+            <mat-form-field class="matModalInput w-100" appearance="outline">
+                <mat-label>Correo:</mat-label>
+                <input matInput
+                       name="Email"
+                       class="form-control "
+                       [pattern] = "regexEmail"
+                       [(ngModel)]="email"
+                       required
+                       />
+                <mat-hint class="hintInput">correo@ejemplo.com</mat-hint>
+            </mat-form-field>
+        </div>
+        
+
+        <div class="col-md-12 pt-3 " id="comentario" *ngIf="isSelect">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Escribe un comentario:</mat-label>
+                <textarea matInput placeholder="Comentario" [(ngModel)]="comment"></textarea>
+            </mat-form-field>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<div class="modal-footer footerModalContainer" >
+    <button type="button"
+            class="btn btn-outline-dark buttonModal"
+            (click)="closeModalCitas(false)"
+    >Cancelar</button>
+    <button id="guardarBoton"
+            type="button"
+            class="btn btn-outline-dark buttonModal"
+            (click)="CreateAppointment()"
+            *ngIf="isSelect && guardando== false" >Guardar
+    </button>
+
+
+    <button class="btn btn-secondary"
+            disabled
+            *ngIf="guardando== true"
+            type="button" >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Guardando
+    </button>
+
+
+</div>

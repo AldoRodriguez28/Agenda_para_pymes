@@ -1,0 +1,7 @@
+<angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings">
+    <c-item>
+        <ng-template let-item="item">
+            <label style="color: #333;min-width: 150px;">{{item.itemName}}</label>
+        </ng-template>
+    </c-item>
+</angular2-multiselect>

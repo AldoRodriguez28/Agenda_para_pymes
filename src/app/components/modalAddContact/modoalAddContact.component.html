@@ -1,0 +1,46 @@
+<ng-template  #content let-modal class="dialogContainer">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Alta de Contacto</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+				<label for="dateOfBirth"></label>
+				<div class="input-group containerData">
+					<div class="modalNombre">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>Nombre del contacto</mat-label>
+							<input matInput required>
+							<mat-hint class="hintInput">Jhon Doe</mat-hint>
+						</mat-form-field>
+					</div>
+					<div class="modalTelefono">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>Telefono del contacto</mat-label>
+							<mat-hint class="hintInput">10 digitos :(229) 123 4567</mat-hint>
+							<input matInput required>
+						</mat-form-field>
+					</div>
+					<div class="email">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>E-mail del contacto</mat-label>
+							<input matInput required>
+							<mat-hint class="hintInput">user@example.com</mat-hint>
+						</mat-form-field>
+					</div>
+                </div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer footerContainer">
+		<button type="button" class="btn btn-outline-dark buttonAgenda" [swal]="deleteSwal" (click)="modal.close('Save click')">Cancelar</button>
+		<button type="button" class="btn btn-outline-dark buttonAgenda" [swal]="['Creado !', 'Tu contacto han sido creado correctamente.', 'success' ]" (click)="modal.close('Save click')" >Guardar</button>
+		<swal #deleteSwal title="Borrar contacto" etc></swal>
+	</div>
+</ng-template>
+
+<a class="btn-add modalContainer_addContact" (click)="open(content)">+</a>
+
+<hr />
+

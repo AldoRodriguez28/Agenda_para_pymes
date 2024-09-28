@@ -1,0 +1,75 @@
+.cardRecurso{
+    display: flex;
+    flex-direction: column;
+    .infoRecurso{
+        display: grid;
+        grid-template-columns: 24% 52% 24%;
+    }
+    .horarioRecurso{
+        display: flex;
+        flex-direction: column;
+    }
+    .infoHorario{
+        font-family: 'Montserrat-Thin';
+        color: #707070;
+    }
+}
+.iconContainer{
+    place-self: center;
+}
+.iconType{
+    font-size: 24px;
+    color: #707070;
+}
+.containerCardCallBack{
+    background-color:rgba(238, 29, 36, 0.19);
+    border-radius: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+    p{margin: 0;}
+}
+.containerCardAgendarCita{
+    background-color:rgba(57, 181, 75, 0.19);
+    border-radius: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+    p{margin: 0;}
+    .infoHorario{
+        .horarioRecurso{
+            margin-top: 24px;
+        }
+    }
+}
+.cardRecurso{
+    width: 345px;
+    gap: 12px;
+    margin: 12px;
+}
+.nombreRecurso{
+    font-size: 20px;
+    font-weight: 600;
+    color:#707070;
+}
+.tipoRecurso{
+    font-size: 16px;
+    font-weight: 200;
+    color:#707070;
+}
+.actions{
+    display: flex;
+    gap: 16%;
+    color: #707070;
+}
+.iconAction{
+    font-size: 24.5px;
+}
+.horario_x_dia div {
+    display: flex;
+}
+.dayClose{
+    text-decoration: line-through;
+}

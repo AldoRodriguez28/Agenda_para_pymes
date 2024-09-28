@@ -1,0 +1,8 @@
+diff a/src/environments/environment.ts b/src/environments/environment.ts	(rejected hunks)
+@@ -6,6 +6,7 @@
+   production: false,
+   //API_URI: 'https://localhost:7209/',
+   API_URI: 'https://minegocio.d.seccionamarilla.com.mx/',
+   BARER_TOKEN: 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIzZDQzNWEwLTJmMWUtNDMzZS05MTc4LTg0YWE5MDAyNTY4NyIsInN1YiI6ImFkbWluIiwiZW1haWwiOiJhZG1pbiIsImp0aSI6ImUzZTYwNzA3LTI1MGMtNDljNy1hZTgwLTc1N2IxOWI2ZTEwMiIsIm5iZiI6MTY3NjM0ODkxNywiZXhwIjoxNjc2NDM1MzE3LCJpYXQiOjE2NzYzNDg5MTd9.BgtgrqxLv-6GW798VVDIeAwDE9u2yPSvS8HFhhYZtBWMsotj5T9HFdmKn9BmBdsFJH7JctpDHZIDERSrKQp4jQ',
+   API_MINEGOCIO_USER:'admin',
+   API_MINEGOCIO_PASSWORD:'xui54n8w',

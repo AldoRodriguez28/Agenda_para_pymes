@@ -1,0 +1,11 @@
+<mat-button-toggle-group
+  [(ngModel)]="idrecursoSelected"
+  name="favoriteColor"
+  aria-label="Selecciona un Recurso"
+  id="select-recurso"
+>
+  <mat-button-toggle  *ngFor="let item of listRecusos" [value]="item.resource" 
+  (click) ="this.SelectedCalendar(item.calendarId); this.SelectedTypeCalendar(item.calendarTypeId)">
+    {{ item.resource }}
+  </mat-button-toggle>
+</mat-button-toggle-group>

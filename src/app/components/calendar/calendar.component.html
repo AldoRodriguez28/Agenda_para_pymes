@@ -1,0 +1,121 @@
+<div class="row" id="calendar">
+  <div class="col-md-3"></div>
+
+  <div class="col-md-6" id="items-calendar">
+    <!--        prev-->
+    <div
+      id="pre-calendar"
+      class="btn btn-link"
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()"
+      (click)="prevDate()"
+    >
+      <fa-icon [icon]="faAngleLeft"></fa-icon>
+    </div>
+    <span class="h2 name-month">
+      {{ viewDate | calendarDate : view + "ViewTitle" : locale : weekStartsOn }}
+    </span>
+    <!-- next -->
+    <div
+      id="next-calendar"
+      class="btn btn-link"
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()"
+      (click)="nextDate()"
+    >
+      <fa-icon [icon]="faAngleRight" class="iconType"></fa-icon>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="btn-group btn-group-calendar align-content-end">
+      <div
+        class="btn btn-primary btn-dia"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Hoy
+      </div>
+      <div
+        class="btn btn-primary btn-semana"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Sem
+      </div>
+
+      <div
+        class="btn btn-primary btn-mes"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Mes
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div [ngSwitch]="view" id="administrarCita">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day); verifyDayClicked($event)"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+    class="mes"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"   
+    [dayStartHour]="startHour2"
+    [dayEndHour]="endHour2"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [dayStartHour]="startHour2"
+    [dayEndHour]="endHour2"
+    [events]="events"
+    [locale]="locale"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-day-view>
+
+  <!--    <button class="btn btn-primary" (click)="convertEvent()" >
+        <i class="fa-regular fa-circle-check"></i>
+        Ajustar el html
+    </button>-->
+</div>
+
+<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+<br /><br /><br />
+
+<ng-template #modalContent let-close="close">
+  <app-detail-cita
+    [recursos]="arrayRecursos"
+    [siteName]="attr_siteName"
+    [event]="modalData.event"
+    (close)="close()"
+    (UpdateAppointment)="AppointmentUpdate()"
+    [idAppointment]="idAppointment"
+  ></app-detail-cita>
+</ng-template>

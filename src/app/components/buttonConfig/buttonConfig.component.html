@@ -1,0 +1,81 @@
+<a class="nav-link dropdown-toggle btn-add" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Config
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" (click)="exportToExcel()">Exportar Contactos</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a id="liOpenModal" class="dropdown-item" (click)="open(content)">Agregar Contacto</a></li>
+  </ul>
+
+
+  <ng-template  #content let-modal class="dialogContainer">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Alta de Contacto</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form novalidate [formGroup]="formAddContact" (ngSubmit)="addContact($event)">
+			<div class="mb-3">
+				<label for="dateOfBirth"></label>
+				<div class="input-group containerData">
+					<div class="modalNombre">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>Nombre del contacto</mat-label>
+							<input matInput 
+							name="contactName" 
+							class="form-control" 
+							formControlName="contactName"/>
+							<mat-hint class="hintInput">Diana Sánchez</mat-hint>
+						</mat-form-field>
+					</div>
+					<div class="modalTelefono">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>Telefono del contacto</mat-label>
+							<mat-hint class="hintInput">10 digitos :(229) 123 4567</mat-hint>
+							<input matInput 
+							maxlength="10"
+							name="phone" 
+							class="form-control" 
+							formControlName="phone"/>
+						</mat-form-field>
+					</div>
+					<div class="modalMobil">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>Móvil del contacto</mat-label>
+							<mat-hint class="hintInput">10 digitos :(229) 123 4567</mat-hint>
+							<input matInput 
+							maxlength="10"
+							name="mobil" 
+							class="form-control" 
+							formControlName="mobil"/>
+						</mat-form-field>
+					</div>
+					<div class="email">
+						<mat-form-field class="matModalInput" appearance="outline">
+							<mat-label>E-mail del contacto</mat-label>
+							<input matInput 
+							name="eMail" 
+							class="form-control"   
+							formControlName="email"/>
+							<mat-hint class="hintInput">contacto@tucorreo.com</mat-hint>
+						</mat-form-field>
+					</div>
+                </div>
+			</div>
+			<div class="modal-footer footerContainer">
+				<button type="button" class="btn btn-outline-dark buttonAgenda" [swal]="deleteSwal" (click)="modal.close('Save click'); resetForm()">Cancelar</button>
+				<button type="submit" class="btn btn-outline-dark buttonAgenda" >Guardar</button>
+				<swal #deleteSwal title="Borrar contacto" etc></swal>
+			</div>
+			<div *ngIf="loadingInteracciones;">
+				<app-loading-spinner></app-loading-spinner>
+			  </div>
+		</form>
+	</div>
+	
+	<div class="alert alert-danger" role="alert" *ngIf="iserrorAddContact!=false">
+		{{this.errorAddContact}};		
+	</div>
+</ng-template>
+
+

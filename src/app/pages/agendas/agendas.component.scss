@@ -1,0 +1,62 @@
+app-recursos-config{
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerRecursos{
+    display: flex;
+}
+
+.container{
+    .headerContainer{
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 4%;
+        margin-top: 4%;
+        .nameView{
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            @media only screen and (max-width: 980px) {
+                flex-direction: column;
+            }
+
+            .title{
+                display: flex;
+                gap:12px;
+            }
+            p{
+                font-size: 24px;
+                color: #707070;
+            }
+            .iconAction{
+                color:#707070;
+                font-size: 24px;
+            }
+        }
+        .searchComponent{
+            max-width: 30%;
+        }
+       
+    }
+}
+
+.dayClose{
+    text-decoration: line-through;
+}
+.fab-create-cita {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(42, 31, 99);
+    border-radius: 15%;
+    box-shadow: 0 6px 10px 0 #666;
+    transition: all 0.1s ease-in-out;
+    z-index: 100;
+    color: white;
+    text-align: center;
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    padding-top: 10px;
+    font-size: 30px;
+}

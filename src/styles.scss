@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// boton
+.btn-add {
+  background-color: #292263;
+  color: #ffff;
+  padding: .75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  min-width: 88px!important;
+}
+.btn-cancel {
+  background-color: white;
+  border: rgb(217,217,217) solid ;
+  padding: .75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+// modales
+.modal-header{
+  border-bottom: 0px;
+  h4{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    color: #707070;
+  }
+}
+.footerModalContainer{
+  justify-content: center;
+  gap: 16px;
+  border: 0;
+  flex-wrap: nowrap;
+}
+.buttonModal{
+  width: 140px;
+}
+#create-cita{
+
+}
+
+.cdk-overlay-container {
+  z-index: 1057!important; // con esto ya funcionara arriba del modal
+}
+
+
+#time-picker{
+  .mdc-text-field--filled{
+    background-color: rgb(22,118,255)!important;
+  }
+  .mdc-floating-label,.mat-mdc-select-min-line{
+    color: white;
+  }
+  .mat-mdc-select-arrow{
+    color: white;
+  }
+}
+
+#select-recurso{
+  .mat-button-toggle{
+   padding-right: 10px;
+  }
+  .mat-button-toggle-checked{
+    background-color: #292263;
+    color: white;
+  }
+}
+
+
+
+.cal-month-view .cal-open-day-events{
+  display: none!important;
+}
+

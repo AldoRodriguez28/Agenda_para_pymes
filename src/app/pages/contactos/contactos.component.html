@@ -1,0 +1,248 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="header-container row">
+      <div class="col-md-7">
+        <div class="name-view">
+          <fa-icon [icon]="faUserFriends" class="iconAction"></fa-icon>
+          <p class="nameView">Contactos</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="d-flex" role="search">
+          <input
+                  class="form-control me-2"
+                  type="search"
+                  [(ngModel)]="searchText"
+                  (keyup.enter)="onSearch()"
+                  placeholder="Buscar contacto"
+                  aria-label="Buscar contacto"
+                  (input)="getValue($event)"
+                 
+          />
+          <button
+                  (click)="onSearch()"
+
+                  class="btn btn-outline-success"
+                  type="submit">Buscar</button>
+        </div>
+       <!-- <div class="row">
+          <div class="col-md-12">
+            <section class="example-section">
+              <mat-checkbox class="example-margin"
+                            (ngModelChange)="onHandleSearch()"
+                            [(ngModel)]="filtersSearch.id">#</mat-checkbox>
+              <mat-checkbox class="example-margin"
+                            (ngModelChange)="onHandleSearch()"
+                            [(ngModel)]="filtersSearch.nombre">Nombre</mat-checkbox>
+              <mat-checkbox class="example-margin"
+                            (ngModelChange)="onHandleSearch()"
+                            [(ngModel)]="filtersSearch.telefono">Telefono</mat-checkbox>
+              <mat-checkbox class="example-margin"
+                            (ngModelChange)="onHandleSearch()"
+                            [(ngModel)]="filtersSearch.email">Email</mat-checkbox>
+            </section>
+          </div>
+
+        </div>
+-->
+      </div>
+      <div class="col-md-1">
+        <app-buttonConfig
+                (addNewContact)="updateListContact()"
+                [siteName]="this.siteNAmeByBcProduct"
+                [Advertiser_id]="this.advertiser"
+                [Bc_Product_id]="this.idBcProductSelect"
+        ></app-buttonConfig>
+      </div>
+      <div class="col-md-12 pt-4">
+        <app-ListadoBcProduct
+                (listadoContacto)="renderContacts([$event])"
+                [advertiser]="advertiser"
+                id="ListadoBcProduct">
+        </app-ListadoBcProduct>
+      </div>
+    </div>
+  </div>
+
+  <div class="container table">
+    <div class="row header">
+      <div class="col-1 ">#</div>
+      <div class="col-2 ">Nombre</div>
+      <div class="col-2 ">Teléfono</div>
+      <div class="col-2 ">Móvil</div>
+      <div class="col-2 ">E-mail</div>
+      <div class="col-md-2 ">Acciones</div>
+    </div>
+    <div class="filas">
+      <div class="row copyNoContact" *ngIf="listContacts.data.length == 0">
+        <p>Ups!!! parece que no haz seleccionado un sitio</p>
+      </div>
+      <div *ngFor="let item of listContacts.data; let index = index" class="row filasTr">
+        <div class="col-12 collapseTr"
+            
+            >
+          <div class="row">
+            <div class="col-1 ">{{ index + 1 }}</div>
+            <div class="col-2 ">{{ item.contactName }}</div>
+            <div class="col-2 ">{{ item.phone }}</div>
+            <div class="col-2 ">{{ item.mobil }}</div>
+            <div class="col-2 ">{{ item.eMail }}</div>
+            <div class="col-2  actionContainer">
+              <div
+                class="detailIcon"
+                (click)="detailContacto(item.contactId, content)"
+              >
+                <fa-icon [icon]="faInfoCircle" class="iconAction"></fa-icon>
+                <p class="titleIcon">Detalle</p>
+              </div>
+              <div class="deleteIcon" (click)="deleteContacto(item.contactId)">
+                <fa-icon [icon]="faTrashAlt" class="iconAction"></fa-icon>
+                <p class="titleIcon">Eliminar</p>
+              </div>
+            </div>
+            <div class="col-1  icon-toggle"    [attr.aria-expanded]="!listCollapsed[index]" aria-controls="collapseExample">
+              <fa-icon (click)="GetInteractionByIdContact(index,item.contactId)"  [icon]="faChevronDown" class="iconAction iconAction-chevronDown"></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div
+          [id]="'collapse-row-' + index"
+          class="col-12 interaccionContacto"
+          #collapse="ngbCollapse"
+          [(ngbCollapse)]="!listCollapsed[index]"
+        >
+
+          <app-interaccion-contacto
+          [inputContactId]="item.contactId"
+          [loadInteraccion]="!listCollapsed[index]"
+          [advertiser]="advertiser"
+          >
+          </app-interaccion-contacto>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <mat-paginator #paginator
+                 class="demo-paginator"
+                 (click)="resetCollapseInteraction()"
+                 (page)="handlePageEvent($event)"
+                 [length]="listContacts.registrerTotal"
+                 [pageSize]="listContacts.registerByPage"
+                 [disabled]="disabled"
+                 [showFirstLastButtons]="showFirstLastButtons"
+                 [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                 [hidePageSize]="hidePageSize"
+                 [pageIndex]="listContacts.actualPage>0? listContacts.actualPage-1 : 0"
+                 aria-label="Select page">
+  </mat-paginator>
+</div>
+
+  </div>
+  
+
+
+  <!-- Inicia modal detalle de contacto -->
+  <ng-template #content let-modal class="dialogContainer">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Detalle de Contacto</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="nombre"></label>
+        <div class="input-group containerData" id="nombre">
+          <div class="modalNombre">
+            <mat-form-field class="matModalInput" appearance="outline">
+              <mat-label>Nombre del contacto</mat-label>
+              <input
+                matInput
+                [required]="true"
+                class="form-control"
+                [(ngModel)]="contacto.contactName"
+                name="contactName"
+                [disabled]="editFlag"
+              />
+              <mat-hint class="hintInput">Diana Sánchez</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="modalTelefono">
+            <mat-form-field class="matModalInput" appearance="outline">
+              <mat-label>Teléfono del contacto</mat-label>
+              <mat-hint class="hintInput">10 digitos :(229) 123 4567</mat-hint>
+              <input
+                id="inputPhone"
+                matInput
+                type="tel"
+                [minlength]="10"
+                [maxlength]="10"
+                class="form-control"
+                [(ngModel)]="contacto.phone"
+                name="phone"
+                [disabled]="editFlag"
+              />
+            </mat-form-field>
+          </div>
+          <div class="modalMobil">
+            <mat-form-field class="matModalInput" appearance="outline">
+              <mat-label>Telefono del Móvil</mat-label>
+              <mat-hint class="hintInput">10 digitos :(229) 123 4567</mat-hint>
+              <input
+                id="inputMobil"
+                matInput
+                type="tel"
+                [minlength]="10"
+                [maxlength]="10"
+                class="form-control"
+                [(ngModel)]="contacto.mobil"
+                name="mobil"
+                [disabled]="editFlag"
+              />
+            </mat-form-field>
+          </div>
+          <div class="email">
+            <mat-form-field class="matModalInput" appearance="outline">
+              <mat-label>E-mail del contacto</mat-label>
+              <input
+                [required]="true"
+                type="email"
+                matInput
+                class="form-control"
+                [(ngModel)]="contacto.eMail"
+                [disabled]="editFlag"
+                name="email"
+              />
+              <mat-hint class="hintInput">contacto@tucorreo.com</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer footerModalContainer">
+        <button
+          type="button"
+          class="btn btn-outline-dark buttonModal"
+          (click)="cancelButtonModal()"
+        >
+          Cancelar
+        </button>
+        <button
+          id="editButton"
+          type="button"
+          class="btn btn-outline-dark buttonModal"
+          (click)="testFunctionActualizar()"
+        >
+          {{ editFlag ? "Editar" : "Guardar" }}
+        </button>
+      </div>
+    </div>
+
+  </ng-template>
+
+  <!-- Termina modal detalle de contacto -->

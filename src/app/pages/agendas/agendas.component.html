@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="headerContainer">
+    <div class="nameView">
+      <div class="title col-lg-3 col-md-12 col-xs-12 col-sm-12">
+        <fa-icon [icon]="faInbox" class="iconAction"></fa-icon>
+        <p class="nameView">Agendas</p>
+      </div>
+
+      <app-ListadoBcProduct
+        class="col-lg-6 col-md-12 col-xs-12 col-sm-12"
+        (listadoContacto)="renderContacts([$event])"
+        id="ListadoBcProduct"
+        [advertiser]="advertiser"
+      ></app-ListadoBcProduct>
+    </div>
+  </div>
+  <div class="containerRecursos">
+
+    <app-recursos-config
+      [bcProductId]="BcProductId"
+      [siteName]="SiteName"
+      [recurso]="Recurso"
+      (open)="open(content)"
+      (closeModal)="closeModalCitas($event)"
+      (recursosLength)="recursosLength = $event"
+    ></app-recursos-config>
+  </div>
+</div>
+
+<!--modal agregar recursos-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar Recurso</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <app-agendar-recurso  [bcProductId]="BcProductId"
+    (closeModal)="closeModalCitas($event)"
+  ></app-agendar-recurso>
+</ng-template>
+
+<div class="fab-create-cita">
+  <a class="text-white" (click)="open(content)">
+    <fa-icon [icon]="faAd" class="iconType"></fa-icon>
+  </a>
+</div>
